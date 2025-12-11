@@ -228,6 +228,22 @@ nav ul li a:hover {
 .project-card-left h2 {
   color: #ffd700;
 }
+.project-card-right {
+  height: 220px;        /* keeps previous look */
+  min-height: 220px;    /* reserve space while image loads */
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff; /* placeholder color while loading */
+}
+
+.project-card-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 
 /* -------------------- Skills & Certifications -------------------- */
 
@@ -412,6 +428,34 @@ nav ul li a:hover {
   max-width: 100%;
   margin: auto;
   overflow: hidden;
+}
+/* Contact embed layout */
+.contact-embed-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* make iframe responsive: max width and center */
+#contactFormIframe {
+  max-width: 100%;
+  width: 900px;   /* fallback for large screens */
+  height: 800px;  /* reduces the iframe height as you requested */
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  background: #fff;
+  border: none;
+}
+
+/* action buttons under the iframe */
+.form-actions { display:flex; gap:12px; justify-content:center; margin:12px 0 40px; }
+.action-btn { background:#6c2bd9; color:white; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:600; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+.action-btn.cancel { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.15); }
+.action-btn:focus { outline:2px solid rgba(108,43,217,0.35); }
+
+/* responsive smaller screens */
+@media (max-width: 980px) {
+  #contactFormIframe { width: 100%; height: 1200px; } /* taller on mobile so footer visible */
 }
 
 .contact-details {

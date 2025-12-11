@@ -51,4 +51,52 @@ if (resetFormBtn) {
     setTimeout(() => formIframe.src = old, 250);
   });
 }
+// ---------- Lazy-load contact iframe ----------
+(function () {
+  const iframe = document.getElementById('contactFormIframe');
+  if (!iframe) return;
+
+  const loadIframe = () => {
+    const src = iframe.getAttribute('data-src');
+    if (src && iframe.src !== src) {
+      iframe.src = src;
+    }
+  };
+
+  // If IntersectionObserver supported, load when near viewport
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadIframe();
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '300px 0px' }); // preload slightly before user reaches it
+    io.observe(iframe);
+  } else {
+    // fallback: load immediately
+    loadIframe();
+  }
+
+  // Open / reset helpers
+  const openBtn = document.getElementById('openFormBtn');
+  const resetBtn = document.getElementById('resetFormBtn');
+
+  if (openBtn) {
+    openBtn.addEventListener('click', () => {
+      const src = iframe.getAttribute('data-src') || iframe.src;
+      const fullUrl = (src || '').replace('/viewform?embedded=true', '/viewform');
+      if (fullUrl) window.open(fullUrl, '_blank');
+    });
+  }
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      const old = iframe.src;
+      iframe.src = 'about:blank';
+      setTimeout(()=> { iframe.src = old; }, 240);
+    });
+  }
+})();
+
 
