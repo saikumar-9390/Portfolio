@@ -122,6 +122,18 @@ nav ul li a:hover {
   max-width: 100%;
   border-radius: 8px;
 }
+/* typed.js line */
+.typed-line {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  color: #39ff14;
+  min-height: 1.6em;       /* keeps height stable, avoids jumping */
+}
+
+#element {
+  white-space: nowrap;     /* text doesn't wrap oddly while typing */
+}
+
 
 
 /* -------------------- About -------------------- */
