@@ -34,3 +34,21 @@ new Typed("#element", {
   loop: true,
   showCursor: false,
 });
+const formIframe = document.getElementById('contactFormIframe');
+const openFormBtn = document.getElementById('openFormBtn');
+const resetFormBtn = document.getElementById('resetFormBtn');
+
+if (openFormBtn) {
+  openFormBtn.addEventListener('click', () => {
+    const url = formIframe.src.replace('/viewform?embedded=true', '/viewform');
+    window.open(url, '_blank');
+  });
+}
+if (resetFormBtn) {
+  resetFormBtn.addEventListener('click', () => {
+    const old = formIframe.src;
+    formIframe.src = 'about:blank';
+    setTimeout(() => formIframe.src = old, 250);
+  });
+}
+
